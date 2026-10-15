@@ -1,0 +1,37 @@
+<div class="container py-4" *ngIf="!cargando && estudiante">
+  <div class="card shadow p-4">
+    <h2 class="mb-3 text-primary">Detalle del Estudiante</h2>
+    <hr>
+    <p><strong>Nombre:</strong> {{ estudiante.nombre }}</p>
+    <p><strong>Nota 1:</strong> {{ estudiante.nota1 }}</p>
+    <p><strong>Nota 2:</strong> {{ estudiante.nota2 }}</p>
+    <p><strong>Nota 3:</strong> {{ estudiante.nota3 }}</p>
+    
+    <div class="alert alert-secondary mt-3">
+      <p class="mb-1"><strong>Suma de notas:</strong> {{ sumaNotas }}</p>
+      <p class="mb-1"><strong>Promedio:</strong> {{ promedio }}</p>
+      <p class="mb-1">
+        <strong>Estado académico:</strong> 
+        <span [ngClass]="estadoAcademico === 'Aprobado' ? 'text-success fw-bold' : 'text-danger fw-bold'">
+          {{ estadoAcademico }}
+        </span>
+      </p>
+      <p class="mb-0">
+        <strong>Observación:</strong> 
+        <span class="badge" [ngClass]="{
+          'bg-success': observacion === 'Excelente',
+          'bg-warning text-dark': observacion === 'Regular',
+          'bg-danger': observacion === 'En riesgo'
+        }">
+          {{ observacion }}
+        </span>
+      </p>
+    </div>
+
+    <button class="btn btn-secondary mt-3 w-25" (click)="volver()">Volver al Listado</button>
+  </div>
+</div>
+
+<div class="container py-4" *ngIf="cargando">
+  <p>Cargando información...</p>
+</div>

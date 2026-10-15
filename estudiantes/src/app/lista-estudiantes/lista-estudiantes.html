@@ -1,0 +1,39 @@
+<div class="container py-4">
+  <h2 class="mb-3">Listado de Estudiantes</h2>
+
+  <!-- Indicador de carga -->
+  <p *ngIf="cargando">Cargando estudiantes...</p>
+
+  <!-- Mensaje de error si falla la conexión -->
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <!-- Tabla que se muestra solo cuando termina de cargar y no hay errores -->
+  <div class="table-responsive" *ngIf="!cargando && !error">
+    <table class="table table-striped table-hover border">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Nota 3</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let est of estudiantes">
+          <td>{{ est.nombre }}</td>
+          <td>{{ est.nota1 }}</td>
+          <td>{{ est.nota2 }}</td>
+          <td>{{ est.nota3 }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="verDetalle(est)">
+              Detalle
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p *ngIf="estudiantes.length === 0" class="text-muted">No hay estudiantes registrados.</p>
+  </div>
+</div>
